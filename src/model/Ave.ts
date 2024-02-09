@@ -4,9 +4,9 @@ export class Ave extends Animal {
     private envergadura: number;
 
     constructor(_nome: string,
-                _idade: number,
-                _genero: string,
-                _envergadura: number) {
+        _idade: number,
+        _genero: string,
+        _envergadura: number) {
         super(_nome, _idade, _genero);
         this.envergadura = _envergadura;
     }

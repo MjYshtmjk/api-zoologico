@@ -4,35 +4,35 @@ export class Animal {
     private idade: number;
     private genero: string;
 
-    constructor(_nome:string,
-                _idade: number,
-                _genero: string) {
+    constructor(_nome: string,
+        _idade: number,
+        _genero: string) {
         this.nome = _nome;
         this.idade = _idade;
         this.genero = _genero;
     }
 
-    public setNome(_nome:string):void{
+    public setNome(_nome: string): void {
         this.nome = _nome;
     }
 
-    public getNome():string{
+    public getNome(): string {
         return this.nome;
     }
 
-    public setIdade(_idade:number):void{
+    public setIdade(_idade: number): void {
         this.idade = _idade;
     }
 
-    public getIdade():number{
+    public getIdade(): number {
         return this.idade;
     }
 
-    public setGenero(_genero:string):void{
+    public setGenero(_genero: string): void {
         this.genero = _genero;
     }
 
-    public getGenero():string{
+    public getGenero(): string {
         return this.genero;
     }
 }
