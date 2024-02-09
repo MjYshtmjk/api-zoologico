@@ -1,10 +1,30 @@
+/**
+ *Importa a classe Animal do arquivo Animal.ts para ser utilizada nesta classe.
+ */
 import { Animal } from "./Animal";
 
+/**
+ * Classe que representa um habitat em um zoológico.
+ */
 export class Habitat {
 
+    /**
+     * Nome do habitat.
+     */
     private nome: string;
+
+
+    /**
+     * Lista de animais que habitam o habitat.
+     */
     private lista_de_animais: Array<Animal>;
 
+    /**
+    * Construtor da classe Habitat.
+    * 
+    * @param _nome O nome do habitat.
+    * @param _lista_de_animais A lista de animais que habitam o habitat.
+    */
     constructor(_nome: string, _lista_de_animais: Array<Animal>) {
         this.nome = _nome;
         this.lista_de_animais = _lista_de_animais;
