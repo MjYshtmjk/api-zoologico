@@ -1,7 +1,11 @@
 /**
  * Importa a classe Animal do arquivo Animal.ts para ser utilizada como superclasse nesta classe.
  */
+import { globalAgent } from "http";
 import { Animal } from "./Animal";
+import { DatabaseModel } from "./DatabaseModel";
+
+const database = new DatabaseModel().pool;
 
 /**
  * Classe que representa um mamífero.
@@ -45,4 +49,42 @@ export class Mamifero extends Animal {
     public getRaca(): string {
         return this.raca;
     }
+
+    static async listarMamiferos() {
+        const listaDeMamiferos: Array<Mamifero> = [];
+        try {
+            const queryReturn = await database.query(`SELECT * FROM mamifero`);
+            queryReturn.rows.forEach(mamifero => {
+                listaDeMamiferos.push(mamifero);
+            });
+
+            // só pra testar se a lista veio certa do banco
+            console.log(listaDeMamiferos);
+
+            return listaDeMamiferos;
+        } catch (error) {
+            console.log('Erro no modelo');
+            console.log(error);
+            return "error";
+        }
+    }
+
+    static async cadastrarMamifero(mamifero: Mamifero): Promise<any> {
+        try {
+            let insertResult = false;
+            await database.query(`INSERT INTO mamifero (nome, idade, genero, raca)
+                VALUES
+                ('${mamifero.getNome().toUpperCase()}', ${mamifero.getIdade()}, '${mamifero.getGenero().toUpperCase()}', '${mamifero.getRaca().toUpperCase()}');
+            `).then((result) => {
+                if(result.rowCount != 0) {
+                    insertResult = true;
+                }
+            });
+            return insertResult;
+        } catch(error) {
+            return error;
+        }
+    }
 }
+
+
