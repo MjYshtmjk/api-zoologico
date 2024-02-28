@@ -87,4 +87,3 @@ export class Mamifero extends Animal {
     }
 }
 
-
