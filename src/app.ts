@@ -1,35 +1,18 @@
 import express from "express";
 import cors from "cors";
-import { Habitat } from "./model/Habitat";
-import { Atracao } from "./model/Atracao";
 import { DatabaseModel } from "./model/DatabaseModel";
 import { Reptil } from "./model/Reptil";
 import { Mamifero } from "./model/Mamifero";
 import { Ave } from "./model/Ave";
-import { getEnabledCategories } from "trace_events";
 
 const server = express();
-const port: number = 8699;
+const port: number = 3000;
 
 server.use(express.json());
 server.use(cors());
 
 server.get('/', (req, res) => {
     res.json("ola");
-});
-
-server.post('/habitat', (req, res) => {
-    const { nome, animais } = req.body;
-    const habitat = new Habitat(nome, animais);
-    console.log(habitat);
-    res.status(200).json('Habitat criado');
-});
-
-server.post('/atracao', (req, res) => {
-    const { nome, habitat } = req.body;
-    const atracao = new Atracao(nome, habitat);
-    console.log(atracao);
-    res.status(200).json('Atração criada');
 });
 
 server.get('/list/reptil', async (req, res) => {
